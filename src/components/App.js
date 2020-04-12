@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Navigator from './Navigator';
+import PokemonList from './PokemonList';
 import './styles/App.css';
-import pokemons from './../assets/pokedex.json';
-
-console.log(pokemons);
+import { Route, Switch } from 'react-router-dom';
+import PokemonDetail from './PokemonDetail';
 
 class App extends Component {
     constructor() {
@@ -13,11 +13,14 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div>
                 <Navigator />
-                <p>
-                    Pokedex
-                </p>
+                <div className="App">
+                    <Switch>
+                        <Route exact path="/" component={PokemonList} />
+                        <Route path="/pokemon/:name" component={PokemonDetail} />
+                    </Switch>
+                </div>
             </div>
         );
     }
